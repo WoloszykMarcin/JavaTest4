@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class PeselService {
+
     public static Optional<LocalDate> extractDate(String pesel) {
         if (pesel == null || pesel.length() != 11 || pesel.isEmpty()) {
             return Optional.empty();
@@ -13,15 +14,10 @@ public class PeselService {
             int year = Integer.parseInt(dateStr.substring(0, 2));
             int month = Integer.parseInt(dateStr.substring(2, 4));
             int day = Integer.parseInt(dateStr.substring(4, 6));
-            if (month > 12) {
-                month -= 20;
-                year += 2000;
-            } else {
-                year += 1900;
-            }
-            LocalDate date = LocalDate.of(year, month, day);
-            return Optional.of(date);
-        } catch (NumberFormatException | IndexOutOfBoundsException ex) {
+            year += (month > 12) ? 2000 : 1900;
+            month = (month > 12) ? month - 20 : month;
+            return Optional.of(LocalDate.of(year, month, day));
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             return Optional.empty();
         }
     }
