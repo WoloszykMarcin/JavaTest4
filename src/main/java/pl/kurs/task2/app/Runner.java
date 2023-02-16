@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class Main {
+public class Runner {
     public static void main(String[] args) throws InvalidPeselException {
         Scanner scanner = new Scanner(System.in);
 

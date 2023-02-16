@@ -3,7 +3,7 @@ package pl.kurs.task3;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Main {
+public class Runner {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(1,2,3, null,4,5,6,7,8,9,10, null);
         List<Integer> list2 = Arrays.asList(1,2,3,5);
