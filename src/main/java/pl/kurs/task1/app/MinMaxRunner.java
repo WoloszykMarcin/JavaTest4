@@ -24,6 +24,14 @@ public class MinMaxRunner {
         System.out.println("Min: " + minMax.getMin());
         System.out.println("Max: " + minMax.getMax());
 
+        MinMax<Integer> minMax2 = MinMaxService.getMinAndMax(integers);
+        System.out.println("Min: " + minMax2.getMin());
+        System.out.println("Max: " + minMax2.getMax());
+
+        MinMax<String> minMax3 = MinMaxService.getMinAndMax(stringList);
+        System.out.println("Min: " + minMax3.getMin());
+        System.out.println("Max: " + minMax3.getMax());
+
 //        System.out.println(MinMaxService.getMinAndMax(null));
 
         try {
