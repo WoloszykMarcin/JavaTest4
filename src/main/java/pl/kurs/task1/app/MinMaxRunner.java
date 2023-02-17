@@ -19,7 +19,7 @@ public class MinMaxRunner {
         people.add(new Employee("Maciej", "Segment", 15000.0));
         people.add(null);
 
-        // zwraca min oraz max pod względem salary
+        // MinMax<Employee> zwraca min oraz max pod względem salary, jeśli salary takie same, to imiona alfabetycznie, jesli imiona takie same to nazwiska alfabetycznie
         MinMax<Employee> minMax = MinMaxService.getMinAndMax(people);
         System.out.println("Min: " + minMax.getMin());
         System.out.println("Max: " + minMax.getMax());
