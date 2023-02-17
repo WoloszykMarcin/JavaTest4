@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class PersonService {
-    public static List<Person> getTheOldestWomen(List<Person> list) throws NoWomenException {
+    public static List<Person> getTheOldestWoman(List<Person> list) throws NoWomenException {
         Set<Map.Entry<Integer, List<Person>>> womenEntries = Optional.ofNullable(list)
                 .orElseGet(Collections::emptyList)
                 .stream()
@@ -18,7 +18,7 @@ public class PersonService {
         return womenEntries.stream()
                 .max(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue)
-                .orElseThrow(() -> new NoWomenException("No women found in the list."));
+                .orElseThrow(() -> new NoWomenException("No women found on the list."));
     }
 
     public static Double getAverageAge(List<Person> list) {
@@ -26,7 +26,6 @@ public class PersonService {
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(p -> Objects.nonNull(p.getAge()))
                 .mapToDouble(p -> p.getAge())
                 .average()
                 .orElse(0);
@@ -37,8 +36,7 @@ public class PersonService {
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(p -> Objects.nonNull(p.getAge()))
-                .filter(p -> !p.getFirstName().endsWith("a"))
+                .filter(p -> Objects.nonNull(p.getFirstName()) && !p.getFirstName().endsWith("a"))
                 .mapToDouble(p -> p.getAge())
                 .average()
                 .orElse(0);
@@ -49,8 +47,7 @@ public class PersonService {
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(p -> Objects.nonNull(p.getAge()))
-                .filter(p -> p.getFirstName().endsWith("a"))
+                .filter(p -> Objects.nonNull(p.getFirstName()) && p.getFirstName().endsWith("a"))
                 .mapToDouble(p -> p.getAge())
                 .average()
                 .orElse(0);
@@ -61,8 +58,7 @@ public class PersonService {
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(p -> Objects.nonNull(p.getAge()))
-                .filter(p -> "female".equals(gender) ? p.getFirstName().endsWith("a") : !p.getFirstName().endsWith("a"))
+                .filter(p -> Objects.nonNull(p.getFirstName()) && (gender.equals("female") == p.getFirstName().endsWith("a")))
                 .mapToDouble(p -> p.getAge())
                 .average()
                 .orElse(Double.NaN);
