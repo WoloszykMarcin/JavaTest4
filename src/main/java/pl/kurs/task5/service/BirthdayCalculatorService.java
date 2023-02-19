@@ -35,9 +35,9 @@ public class BirthdayCalculatorService {
         long yearsAlive = ChronoUnit.YEARS.between(birthDate, LocalDate.now());
         DayOfWeek dayOfWeek = birthDate.getDayOfWeek();
 
-        System.out.println("You have lived for " + daysAlive + " days.");
-        System.out.println("You have lived for " + monthsAlive + " months.");
-        System.out.println("You have lived for " + yearsAlive + " years.");
+        System.out.println("You have been living for " + daysAlive + " days.");
+        System.out.println("You have been living " + monthsAlive + " months.");
+        System.out.println("You have been living for " + yearsAlive + " years.");
         System.out.println("You were born on a " + dayOfWeek + ".");
     }
 
