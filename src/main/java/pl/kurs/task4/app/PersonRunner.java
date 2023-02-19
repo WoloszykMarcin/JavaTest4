@@ -30,7 +30,7 @@ public class PersonRunner {
         System.out.println(PersonService.getAverageAge(people));
         System.out.println(PersonService.getManAverageAge(people));
         System.out.println(PersonService.getWomanAverageAge(people));
-        System.out.println(PersonService.getAverageAgeByGender(people, "female")); // female or male
+        System.out.println(PersonService.getAverageAgeByGender(people, p -> p.getFirstName().endsWith("a")));
         System.out.println(PersonService.getCitiesWithTheMostPeople(people));
         System.out.println(PersonService.getUniqueCities(people));
 

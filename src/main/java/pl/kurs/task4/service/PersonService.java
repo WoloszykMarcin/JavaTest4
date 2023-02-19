@@ -4,6 +4,7 @@ import pl.kurs.task4.exception.NoWomenException;
 import pl.kurs.task4.model.Person;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class PersonService {
@@ -53,12 +54,12 @@ public class PersonService {
                 .orElse(0);
     }
 
-    public static Double getAverageAgeByGender(List<Person> list, String gender) {
+    public static Double getAverageAgeByGender(List<Person> list, Predicate<Person> genderPredicate) {
         return Optional.ofNullable(list)
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(p -> Objects.nonNull(p.getFirstName()) && (gender.equals("female") == p.getFirstName().endsWith("a")))
+                .filter(p -> Objects.nonNull(p.getFirstName()) && genderPredicate.test(p))
                 .mapToDouble(p -> p.getAge())
                 .average()
                 .orElse(Double.NaN);

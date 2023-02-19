@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 public class BirthdayCalculatorService {
 
     public static void calculateBirthDate() {
-        try {
-            Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter your date of birth in the format yyyy-MM-dd: ");
             LocalDate birthDate = LocalDate.parse(scanner.nextLine());
 
-            if (birthDate.isAfter(LocalDate.now()))
+            if (birthDate.isAfter(LocalDate.now())) {
                 throw new InvalidBirthDateException("Invalid birth date!");
+            }
 
             calculateDaysMonthsAndYears(birthDate);
             System.out.println(calculateFirstFridayThe13th(birthDate));
